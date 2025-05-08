@@ -1,39 +1,20 @@
-# POLIDriving Data Labeling
+# Data Labeling
 
-POLIDriving is an 18-hour driving dataset with data from five heterogeneous sources (driver, vehicle, weather conditions, traffic accidents, and road geometrics characteristics). It contains around 61k observations and 32 attributes. Additionally, it contains 1980 labeled observations with four classes (low, medium, high, and very high) that represent the risk levels of suffering a traffic accident. Data was collected using an OBD-II scanner, a GPS receiver, and a health monitor. Four CUV, PICKUP, and SEDAN-type vehicles were used in the acquisition sessions. Finally, two routes through roads with high traffic accident rates and heavy traffic in the urban area of Quito (Ecuador) were considered for the acquisition sessions.
+Three techniques for data labeling on traffic accident risks are presented below. 
 
-# Dataset structure
+## Ruled-based voting ensemble
 
-## Directory structure
+We manually labeled a small subset of observations by defining attribute-specific threshold values and establishing value ranges associated with varying penalty scores. These
+rules allowed us to construct interpretable labeling criteria for initial class assignment. To extend labels to the full dataset, we employed a semi-supervised approach that combined
+our manual rules with a rule-based voting ensemble. Each labeling rule acted as a weak classifier, and final class assignments for the unlabeled data were determined through majority voting. This hybrid strategy leveraged domain knowledge and minimal manual effort to generate a complete and consistent labeling across the dataset.
 
-POLIDriving contains driving data from 5 drivers (alonso, andres, pablo, richard, and yolanda) and also synthetic data from one unreal driver (furious).  
+## Fuzzy sets
 
-The folder structure of POLIDriving is the following.
+We used fuzzy sets to label all observations (23,152). Following the guidelines of fuzzy sets, we created the most relevant linguistic variables (13)– except for the observation hour, the associated fuzzy sets for each linguistic variable, and then the membership functions for all fuzzy sets. Figure 1 presents the membership functions for some fuzzy sets. Finally, we determined the fuzzy rules to relate inputs and outputs. Considering that the number of rules for a fuzzy system with this number of attributes could easily reach hundreds or thousands, we designed a fuzzy system that consists of single-input-output subsystems, where the input is each attribute and the output is the penalty value for that input. Those penalty values are used later to calculate the risk level for that observation. Figure 2 presents the design of our fuzzy inference system.
 
-```
-dataset
-|
-+-- alonso
-|   |
-|   +-- 20231229_151643
-|       |
-|       +-- 2023-12-29 15-16-43.csv (raw vehicle data)
-|       +-- 20231229_151643_col.csv (consolidated data file)
-|       +-- 20231229_151643_pre.csv (data file after preprocessing)
-|       +-- 13281086609_ACTIVITY-record.csv (driver's data from health monitor)
-|   +-- 20240103_141959
-|   +-- 20240208_120000
-|   +-- 23241201_290300
-+-- andres
-+-- furious
-+-- labeled
-|       |
-|       +-- 20240208-120000_lss.csv (labeled data using semi-supervised learning)
-|       +-- 20240208-120000_vld.csv (labeled data verified by an expert)
-+-- pablo
-+-- richard
-+-- yolanda
-```
+## Fuzzy clustering
+
+We performed fuzzy c-means (FCM) with different values for the fuzziness factor. Table 3 presents the configurations used in clustering and their results. According to this table, the minority classes are high and very high. In the case of configuration #1, all classes are quite balanced; however, for the remaining configurations, the number of observations in minority classes is practically zero, except for configuration #2, where the number of observations labeled as high is somewhat numerous. Figure 3 presents the label distribution for some of the most relevant attributes for all configurations.
 
 ## Data file format
 
@@ -95,4 +76,4 @@ The size of POLIDriving is about 150 MB.
 
 # Contact
 
-For questions or suggestions, please contact pablo.marcillo@epn.edu.ec
+For questions or suggestions, please contact pablo.marcillo@epn.edu.ec or pablomarcillolara@gmail.com
