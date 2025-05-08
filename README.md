@@ -8,11 +8,17 @@ A subset of observations is manually labeled by defining attribute-specific thre
 
 ## Fuzzy sets
 
-We used fuzzy sets to label all observations (23,152). Following the guidelines of fuzzy sets, we created the most relevant linguistic variables (13)– except for the observation hour, the associated fuzzy sets for each linguistic variable, and then the membership functions for all fuzzy sets. Figure 1 presents the membership functions for some fuzzy sets. Finally, we determined the fuzzy rules to relate inputs and outputs. Considering that the number of rules for a fuzzy system with this number of attributes could easily reach hundreds or thousands, we designed a fuzzy system that consists of single-input-output subsystems, where the input is each attribute and the output is the penalty value for that input. Those penalty values are used later to calculate the risk level for that observation. Figure 2 presents the design of our fuzzy inference system.
+Following the guidelines of fuzzy sets, we created the most relevant linguistic variables (13 in total), the associated fuzzy sets for each linguistic variable, and then the membership functions for all fuzzy
+sets. Finally, we determined the fuzzy rules to relate inputs and outputs. Regarding membership functions, we chose a triangular function for all fuzzy sets. This function
+establishes that the boundary values obtain the lowest membership values, and the mean value obtains the highest.. Considering that the number of rules for a fuzzy inference system (FIS) with this number of attributes could easily reach hundreds or thousands, a FIS that consists of single-input and single-output (SISO) subsystems is designed, where the input is each attribute and the output is the penalty value for that input. Those penalty values are used later to calculate the risk level for that observation. 
 
 ## Fuzzy clustering
 
-We performed fuzzy c-means (FCM) with different values for the fuzziness factor. Table 3 presents the configurations used in clustering and their results. According to this table, the minority classes are high and very high. In the case of configuration #1, all classes are quite balanced; however, for the remaining configurations, the number of observations in minority classes is practically zero, except for configuration #2, where the number of observations labeled as high is somewhat numerous. Figure 3 presents the label distribution for some of the most relevant attributes for all configurations.
+Fuzzy c-means (FCM) with different values (2, 3, 4, and 5) for the fuzziness factor, 0.005 for error, and 1,000 for number of iterations. 
+
+
+
+Table 3 presents the configurations used in clustering and their results. According to this table, the minority classes are high and very high. In the case of configuration #1, all classes are quite balanced; however, for the remaining configurations, the number of observations in minority classes is practically zero, except for configuration #2, where the number of observations labeled as high is somewhat numerous. Figure 3 presents the label distribution for some of the most relevant attributes for all configurations.
 
 ## Data file format
 
