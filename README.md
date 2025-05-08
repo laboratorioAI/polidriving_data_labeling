@@ -4,9 +4,7 @@ Three techniques for data labeling on traffic accident risks are presented below
 
 ## Ruled-based voting ensemble
 
-We manually labeled a small subset of observations by defining attribute-specific threshold values and establishing value ranges associated with varying penalty scores. These
-rules allowed us to construct interpretable labeling criteria for initial class assignment. To extend labels to the full dataset, we employed a semi-supervised approach that combined
-our manual rules with a rule-based voting ensemble. Each labeling rule acted as a weak classifier, and final class assignments for the unlabeled data were determined through majority voting. This hybrid strategy leveraged domain knowledge and minimal manual effort to generate a complete and consistent labeling across the dataset.
+A subset of observations is manually labeled by defining attribute-specific threshold values and establishing value ranges associated with varying penalty scores. These rules allowed us to construct interpretable labeling criteria for initial class assignment. A semi-supervised approach that combines our manual rules with a rule-based voting ensemble is employed to extend labels to the full dataset. Each labeling rule acted as a weak classifier, and final class assignments for the unlabeled data were determined through majority voting. This hybrid strategy leveraged domain knowledge and minimal manual effort to generate a complete and consistent labeling across the dataset.
 
 ## Fuzzy sets
 
